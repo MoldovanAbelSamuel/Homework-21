@@ -20,17 +20,15 @@ public class MovieRating {
     @JsonIgnore
     private Movie movie;
 
-    public MovieRating(Integer movieRatingId, int rating, String agencyName, Movie movie) {
+    public MovieRating(Integer movieRatingId, int rating, String agencyName) {
         this.movieRatingId = movieRatingId;
         this.rating = rating;
         this.agencyName = agencyName;
-        this.movie = movie;
     }
 
-    public MovieRating(int rating, String agencyName, Movie movie) {
+    public MovieRating(int rating, String agencyName) {
         this.rating = rating;
         this.agencyName = agencyName;
-        this.movie = movie;
     }
 
     public MovieRating() {

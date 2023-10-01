@@ -19,17 +19,15 @@ public class Review {
     @JoinColumn(name = "movie_id")
     private Movie movieReview;
 
-    public Review(Integer reviewId, String text, String reviewer, Movie movieReview) {
+    public Review(Integer reviewId, String text, String reviewer) {
         this.reviewId = reviewId;
         this.text = text;
         this.reviewer = reviewer;
-        this.movieReview = movieReview;
     }
 
-    public Review(String text, String reviewer, Movie movieReview) {
+    public Review(String text, String reviewer) {
         this.text = text;
         this.reviewer = reviewer;
-        this.movieReview = movieReview;
     }
 
     public Review() {
@@ -66,4 +64,5 @@ public class Review {
     public void setMovieReview(Movie movieReview) {
         this.movieReview = movieReview;
     }
+
 }

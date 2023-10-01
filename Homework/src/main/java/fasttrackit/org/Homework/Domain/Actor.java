@@ -1,9 +1,9 @@
 package fasttrackit.org.Homework.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "Actor")
@@ -16,19 +16,12 @@ public class Actor {
     private int birthYear;
 
     @ManyToMany(mappedBy = "actors")
-    private Set<Movie> movies;
+    @JsonIgnore
+    private List<Movie> movies;
 
-    public Actor(Integer actorId, String actorName, int birthYear, Set<Movie> movies) {
-        this.actorId = actorId;
+    public Actor(String actorName, int birthYear) {
         this.actorName = actorName;
         this.birthYear = birthYear;
-        this.movies = movies;
-    }
-
-    public Actor(String actorName, int birthYear, Set<Movie> movies) {
-        this.actorName = actorName;
-        this.birthYear = birthYear;
-        this.movies = movies;
     }
 
     public Actor(Integer actorId, String actorName, int birthYear) {
@@ -64,11 +57,11 @@ public class Actor {
         this.birthYear = birthYear;
     }
 
-    public Set<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(Set<Movie> movies) {
+    public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
 
@@ -82,5 +75,12 @@ public class Actor {
     @Override
     public int hashCode() {
         return Objects.hash(getActorId(), getActorName(), getBirthYear(), getMovies());
+    }
+
+    public void addMovie(Movie movie){
+        if(this.movies == null){
+            this.movies = new ArrayList<>();
+        }
+        this.movies.add(movie);
     }
 }

@@ -26,7 +26,6 @@ public class Movie {
     private List<Review> reviews;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
     @JoinColumn(name = "studio_id")
     private Studio studioMovie;
 
@@ -36,18 +35,9 @@ public class Movie {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id")
     )
-    private Set<Actor> actors;
+    private List<Actor> actors;
 
-    public Movie(String movieName, int releaseYear, MovieRating movieRating, List<Review> reviews, Studio studioMovie, Set<Actor> actors) {
-        this.movieName = movieName;
-        this.releaseYear = releaseYear;
-        this.movieRating = movieRating;
-        this.reviews = reviews;
-        this.studioMovie = studioMovie;
-        this.actors = actors;
-    }
-
-    public Movie(Integer movieId, String movieName, int releaseYear, MovieRating movieRating, List<Review> reviews, Studio studioMovie, Set<Actor> actors) {
+    public Movie(Integer movieId, String movieName, int releaseYear, MovieRating movieRating, List<Review> reviews, Studio studioMovie, List<Actor> actors) {
         this.movieId = movieId;
         this.movieName = movieName;
         this.releaseYear = releaseYear;
@@ -57,39 +47,13 @@ public class Movie {
         this.actors = actors;
     }
 
-    public Movie(String movieName, int releaseYear, MovieRating movieRating, List<Review> reviews, Studio studioMovie) {
+    public Movie(String movieName, int releaseYear, MovieRating movieRating, List<Review> reviews, Studio studioMovie, List<Actor> actors) {
         this.movieName = movieName;
         this.releaseYear = releaseYear;
         this.movieRating = movieRating;
         this.reviews = reviews;
         this.studioMovie = studioMovie;
-    }
-
-    public Movie(Integer movieId, String movieName, int releaseYear, MovieRating movieRating, List<Review> reviews, Studio studioMovie) {
-        this.movieId = movieId;
-        this.movieName = movieName;
-        this.releaseYear = releaseYear;
-        this.movieRating = movieRating;
-        this.reviews = reviews;
-        this.studioMovie = studioMovie;
-    }
-
-    public Movie(String movieName, int releaseYear) {
-        this.movieName = movieName;
-        this.releaseYear = releaseYear;
-    }
-
-    public Movie(Integer movieId, String movieName, int releaseYear, MovieRating movieRating) {
-        this.movieId = movieId;
-        this.movieName = movieName;
-        this.releaseYear = releaseYear;
-        this.movieRating = movieRating;
-    }
-
-    public Movie(String movieName, int releaseYear, MovieRating movieRating) {
-        this.movieName = movieName;
-        this.releaseYear = releaseYear;
-        this.movieRating = movieRating;
+        this.actors = actors;
     }
 
     public Movie() {
@@ -150,11 +114,11 @@ public class Movie {
         this.studioMovie = studioMovie;
     }
 
-    public Set<Actor> getActors() {
+    public List<Actor> getActors() {
         return actors;
     }
 
-    public void setActors(Set<Actor> actors) {
+    public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
 }

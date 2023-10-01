@@ -1,6 +1,7 @@
 package fasttrackit.org.Homework.Domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,19 +18,18 @@ public class Studio {
     private String studioAddress;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "studioMovie")
+    @JsonIgnore
     private List<Movie> movies;
 
-    public Studio(Integer studioId, String studioName, String studioAddress, List<Movie> movies) {
+    public Studio(Integer studioId, String studioName, String studioAddress) {
         this.studioId = studioId;
         this.studioName = studioName;
         this.studioAddress = studioAddress;
-        this.movies = movies;
     }
 
-    public Studio(String studioName, String studioAddress, List<Movie> movies) {
+    public Studio(String studioName, String studioAddress) {
         this.studioName = studioName;
         this.studioAddress = studioAddress;
-        this.movies = movies;
     }
 
     public Studio() {
